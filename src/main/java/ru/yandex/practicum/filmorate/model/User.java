@@ -5,23 +5,23 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Data
 @Builder
 @Validated
 @EqualsAndHashCode(callSuper = true)
-public class Film extends BaseUnit {
+public class User extends BaseUnit {
+    @NotEmpty
+    @Email
+    private String email;
     @NotBlank
+    private String login;
     private String name;
-    @Size(max=200)
-    private String description;
-    @NotNull
-    private LocalDate releaseDate;
-    @Min(1)
-    private int duration;
+    @PastOrPresent
+    private LocalDate birthday;
 }
