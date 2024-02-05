@@ -10,6 +10,5 @@ public interface AbstractStorage<T extends BaseUnit> {
     T create(T data);
     T update(T data);
     List<T> getAll();
-    public abstract T validate(T data);
     T get(Long id);
 }

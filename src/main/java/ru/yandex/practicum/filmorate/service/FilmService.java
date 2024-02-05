@@ -4,37 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.DataNotFoundException;
 import ru.yandex.practicum.filmorate.model.Film;
-import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.film.FilmStorage;
-import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
-import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
-import ru.yandex.practicum.filmorate.storage.user.UserStorage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class FilmService {
-//    FilmStorage films = new InMemoryFilmStorage();
     @Autowired
     FilmStorage filmStorage;
     public Film addLike(Long idFilm, Long idUser) {
-        int i = 1;
         Film film = filmStorage.get(idFilm);
-
         film.addLike(idUser);
         filmStorage.update(film);
         return filmStorage.get(idFilm);
-//        int likes = film.getRate();
-//        if (likes==null) {
-//            likes = new HashSet<>();
-//        }
-//        likes.add(idUser);
-//        film.setLikes(likes);
-//        filmStorage.update(film);
-//        return filmStorage.get(idFilm);
     }
 
     public Film deleteLike(Long idFilm, Long idUser) {
@@ -45,11 +28,6 @@ public class FilmService {
         film.deleteLike(idUser);
         filmStorage.update(film);
         return filmStorage.get(idFilm);
-//        Set<Long> likes = film.getLikes();
-//        likes.remove(idUser);
-//        film.setLikes(likes);
-//        filmStorage.update(film);
-//        return filmStorage.get(idFilm);
     }
 
     public List<Film> getPopularFilms(Long count) {

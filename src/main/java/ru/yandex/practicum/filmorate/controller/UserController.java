@@ -1,20 +1,13 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.User;
-import ru.yandex.practicum.filmorate.service.FilmService;
 import ru.yandex.practicum.filmorate.service.UserService;
-import ru.yandex.practicum.filmorate.storage.film.FilmStorage;
-import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
-import ru.yandex.practicum.filmorate.storage.user.UserStorage;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -27,7 +20,6 @@ public class UserController{
 
     @PostMapping
     public User create(@Valid @RequestBody User user) {
-//        user.setFriends(null);
         log.info("Creating user {}", user);
         user = validate(user);
         return userService.create(user);
@@ -48,7 +40,6 @@ public class UserController{
     @PutMapping("/{id}/friends/{friendId}")
     public User addFriend(@PathVariable Long id,
                         @PathVariable Long friendId) {
-        Long iii = id;
         return userService.addFriend(id, friendId);
     }
 
@@ -60,7 +51,6 @@ public class UserController{
 
     @GetMapping("/{id}/friends")
     public List<User> getAllFriends(@PathVariable Long id) {
-        Long idUser = id;
         return userService.getAllFriends(id);
     }
 

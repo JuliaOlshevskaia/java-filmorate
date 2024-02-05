@@ -32,10 +32,6 @@ public class InMemoryBaseStorage<T extends BaseUnit> implements AbstractStorage<
         return new ArrayList<T>(storage.values());
     }
 
-    public T validate(T data) {
-        return null;
-    }
-
     @Override
     public T get(Long id) {
         if (!(storage.containsKey(id))) {

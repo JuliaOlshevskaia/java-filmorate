@@ -31,15 +31,6 @@ public class InMemoryFilmStorage extends InMemoryBaseStorage<Film> implements Fi
         return super.getAll();
     }
 
-//    @Override
-//    public Film validate(Film data) {
-//        if (data.getReleaseDate().isBefore(START_RELEASE_DATE)) {
-//            log.warn("Release date film is before 28.12.1895");
-//            throw new FilmValidationException("Film release date is invalid");
-//        }
-//        return data;
-//    }
-
     @Override
     public Film get(Long id) {
         return super.get(id);
