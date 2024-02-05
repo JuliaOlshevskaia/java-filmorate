@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.yandex.practicum.filmorate.controller.FilmController;
 import ru.yandex.practicum.filmorate.controller.UserController;
-import ru.yandex.practicum.filmorate.exception.FilmValidationException;
+import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.service.UserService;
 
 import java.time.LocalDate;
 
@@ -19,8 +21,8 @@ class FilmorateApplicationTests {
 
 	@BeforeEach
 	void setUp() {
-		filmController = new FilmController();
-		userController = new UserController();
+		filmController = new FilmController(new FilmService());
+		userController = new UserController(new UserService());
 	}
 
 	@Test
@@ -44,7 +46,7 @@ class FilmorateApplicationTests {
 				.duration(100)
 				.build();
 
-		Assertions.assertThrows(FilmValidationException.class, () -> filmController.validate(film));
+		Assertions.assertThrows(ValidationException.class, () -> filmController.validate(film));
 	}
 
 	@Test

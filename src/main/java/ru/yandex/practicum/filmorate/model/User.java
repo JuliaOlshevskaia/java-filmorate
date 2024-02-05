@@ -1,15 +1,16 @@
 package ru.yandex.practicum.filmorate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -24,4 +25,5 @@ public class User extends BaseUnit {
     private String name;
     @PastOrPresent
     private LocalDate birthday;
+    private Set<Long> friends;
 }
