@@ -16,9 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/films")
 @AllArgsConstructor
-public class FilmController{
-    @Autowired
-    FilmService filmService;
+public class FilmController {
+
+    private final FilmService filmService;
     private final static LocalDate START_RELEASE_DATE = LocalDate.of(1895, 12, 28);
 
     @PostMapping
@@ -61,7 +61,7 @@ public class FilmController{
 
     @DeleteMapping("/{id}/like/{userId}")
     public Film deleteLike(@PathVariable Long id,
-                        @PathVariable Long userId) {
+                           @PathVariable Long userId) {
         return filmService.deleteLike(id, userId);
     }
 

@@ -14,9 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
-public class UserController{
-    @Autowired
-    UserService userService;
+public class UserController {
+
+    private final UserService userService;
 
     @PostMapping
     public User create(@Valid @RequestBody User user) {
@@ -39,13 +39,13 @@ public class UserController{
 
     @PutMapping("/{id}/friends/{friendId}")
     public User addFriend(@PathVariable Long id,
-                        @PathVariable Long friendId) {
+                          @PathVariable Long friendId) {
         return userService.addFriend(id, friendId);
     }
 
     @DeleteMapping("/{id}/friends/{friendId}")
     public User deleteFriend(@PathVariable Long id,
-                           @PathVariable Long friendId) {
+                             @PathVariable Long friendId) {
         return userService.deleteFriend(id, friendId);
     }
 
@@ -66,7 +66,7 @@ public class UserController{
     }
 
     public User validate(User user) {
-        if (user.getName()==null || user.getName().isBlank()) {
+        if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
         return user;

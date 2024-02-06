@@ -11,6 +11,7 @@ import java.util.Map;
 public class InMemoryBaseStorage<T extends BaseUnit> implements AbstractStorage<T> {
     private final Map<Long, T> storage = new HashMap<>();
     private long generatedId;
+
     @Override
     public T create(T data) {
         data.setId(++generatedId);

@@ -11,8 +11,10 @@ import java.util.List;
 
 @Service
 public class FilmService {
+
     @Autowired
-    FilmStorage filmStorage;
+    private FilmStorage filmStorage;
+
     public Film addLike(Long idFilm, Long idUser) {
         Film film = filmStorage.get(idFilm);
         film.addLike(idUser);
@@ -22,7 +24,7 @@ public class FilmService {
 
     public Film deleteLike(Long idFilm, Long idUser) {
         Film film = filmStorage.get(idFilm);
-        if (film.getLikes()==null || !(film.getLikes().contains(idUser))) {
+        if (film.getLikes() == null || !(film.getLikes().contains(idUser))) {
             throw new DataNotFoundException(String.format("Data %s not found", idUser));
         }
         film.deleteLike(idUser);
@@ -36,18 +38,18 @@ public class FilmService {
             count = 10L;
         }
         List<Film> popularFilms = new ArrayList<>();
-        List<Film> filmsAll =  filmStorage.getAll();
-        for (Film film: filmsAll) {
-            if (popularFilms.size()<count) {
+        List<Film> filmsAll = filmStorage.getAll();
+        for (Film film : filmsAll) {
+            if (popularFilms.size() < count) {
                 popularFilms.add(film);
-                if (minLikes==0 && !(film.getLikes()==null) ) {
-                    minLikes=film.getLikes().size();
+                if (minLikes == 0 && !(film.getLikes() == null)) {
+                    minLikes = film.getLikes().size();
                 }
             } else {
-                if (film.getLikes().size()>minLikes) {
+                if (film.getLikes().size() > minLikes) {
                     minLikes = film.getLikes().size();
-                    for (Film popularFilm: popularFilms) {
-                        if (popularFilm.getLikes()==null || popularFilm.getLikes().size()<minLikes) {
+                    for (Film popularFilm : popularFilms) {
+                        if (popularFilm.getLikes() == null || popularFilm.getLikes().size() < minLikes) {
                             popularFilms.remove(popularFilm);
                             break;
                         }
@@ -68,7 +70,8 @@ public class FilmService {
     }
 
     public List<Film> getAll() {
-        return filmStorage.getAll();
+        List<Film> films = filmStorage.getAll();
+        return films;
     }
 
     public Film get(Long id) {

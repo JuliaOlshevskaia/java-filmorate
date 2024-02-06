@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 public class InMemoryFilmStorage extends InMemoryBaseStorage<Film> implements FilmStorage {
     private final static LocalDate START_RELEASE_DATE = LocalDate.of(1895, 12, 28);
+
     @Override
     public Film create(Film film) {
         log.info("Creating film {}", film);

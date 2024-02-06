@@ -17,6 +17,7 @@ public class ErrorHandler {
         log.info("Данные не валидны {}", exception.getMessage());
         return new ErrorResponse(exception.getMessage());
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleDataNotFoundException(final DataNotFoundException exception) {

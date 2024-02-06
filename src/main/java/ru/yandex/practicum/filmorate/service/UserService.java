@@ -12,8 +12,9 @@ import java.util.Set;
 
 @Service
 public class UserService {
+
     @Autowired
-    UserStorage userStorage;
+    private UserStorage userStorage;
 
     public User addFriend(Long idUser, Long idFriend) {
         User user = userStorage.get(idUser);
@@ -55,10 +56,10 @@ public class UserService {
         User user = userStorage.get(idUser);
         Set<Long> friends = user.getFriends();
         List<User> userFriends = new ArrayList<>();
-        if (friends==null) {
+        if (friends == null) {
             return userFriends;
         }
-        for (Long id: friends) {
+        for (Long id : friends) {
             userFriends.add(userStorage.get(id));
         }
         return userFriends;
@@ -70,13 +71,13 @@ public class UserService {
         List<User> commonFriends = new ArrayList<>();
 
         Set<Long> idsCommonFriends = new HashSet<>();
-        if (user.getFriends()==null || otherUser.getFriends()==null) {
+        if (user.getFriends() == null || otherUser.getFriends() == null) {
             return commonFriends;
         }
         idsCommonFriends = new HashSet<>(user.getFriends());
         idsCommonFriends.retainAll(otherUser.getFriends());
 
-        for (Long idFriend: idsCommonFriends) {
+        for (Long idFriend : idsCommonFriends) {
             commonFriends.add(userStorage.get(idFriend));
         }
         return commonFriends;
@@ -91,7 +92,8 @@ public class UserService {
     }
 
     public List<User> getAll() {
-        return userStorage.getAll();
+        List<User> users = userStorage.getAll();
+        return users;
     }
 
     public User get(Long id) {

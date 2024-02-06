@@ -22,7 +22,7 @@ import java.util.Set;
 public class Film extends BaseUnit {
     @NotBlank
     private String name;
-    @Size(max=200)
+    @Size(max = 200)
     private String description;
     @NotNull
     private LocalDate releaseDate;
@@ -33,7 +33,7 @@ public class Film extends BaseUnit {
     private Set<Long> likes;
 
     public void addLike(Long userId) {
-        if (likes==null) {
+        if (likes == null) {
             likes = new HashSet<>();
         }
         likes.add(userId);
