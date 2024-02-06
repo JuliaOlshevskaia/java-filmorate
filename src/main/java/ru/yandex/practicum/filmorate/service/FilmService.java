@@ -70,8 +70,7 @@ public class FilmService {
     }
 
     public List<Film> getAll() {
-        List<Film> films = filmStorage.getAll();
-        return films;
+        return new ArrayList<>(filmStorage.getAll());
     }
 
     public Film get(Long id) {

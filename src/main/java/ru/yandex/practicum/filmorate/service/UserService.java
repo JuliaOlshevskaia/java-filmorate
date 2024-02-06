@@ -92,8 +92,7 @@ public class UserService {
     }
 
     public List<User> getAll() {
-        List<User> users = userStorage.getAll();
-        return users;
+        return new ArrayList<>(userStorage.getAll());
     }
 
     public User get(Long id) {
